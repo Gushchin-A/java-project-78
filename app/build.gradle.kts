@@ -25,7 +25,7 @@ dependencies {
 
 sonar {
     properties {
-        property("sonar.projectKey", "Gushchin-A_java-project-71")
+        property("sonar.projectKey", "Gushchin-A_java-project-78")
         property("sonar.organization", "gushchin-a")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.java.coveragePlugin", "jacoco")
