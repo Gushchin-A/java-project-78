@@ -1,25 +1,19 @@
 package hexlet.code.schemas;
 
-import hexlet.code.Rule;
-import hexlet.code.RuleContains;
-import hexlet.code.RuleMinLength;
-import hexlet.code.RuleRequired;
+import hexlet.code.schemas.rules.Rule;
+import hexlet.code.schemas.rules.string.RuleContains;
+import hexlet.code.schemas.rules.string.RuleMinLength;
+import hexlet.code.schemas.rules.string.RuleRequired;
 
 import java.util.LinkedHashMap;
 
-/**
- * Класс для проверки типов данных String.
- */
+/** Класс для проверки типов данных String. */
 public final class StringSchema extends BaseSchema<String> {
-    /**
-     * Коллекция для добавления правил в объект схему.
-     */
+    /** Коллекция для добавления правил в объект схему. */
     private final LinkedHashMap<String, Rule<String>> rulesMap =
             new LinkedHashMap<>();
 
-    /**
-     * Создание объекта схемы.
-     */
+    /** Создание объекта схемы. */
     public StringSchema() {
     }
 

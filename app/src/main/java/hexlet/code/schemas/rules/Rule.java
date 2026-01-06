@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.schemas.rules;
 
 /**
  * Интерфейс для правил с методом проверки.

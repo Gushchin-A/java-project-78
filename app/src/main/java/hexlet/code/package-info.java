@@ -1,4 +1,2 @@
-/**
- * Основной пакет для Validator.
- */
+/** Основной пакет для Validator. */
 package hexlet.code;

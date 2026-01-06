@@ -1,6 +1,7 @@
 /**
- * Пакет содержит схемы валидации данных.
+ * Пакет содержит схемы и правила валидации данных.
  * BaseSchema абстрактный класс
- * StringSchema
+ * StringSchema для строковых типов
+ * NumberSchema для числовых типов
  */
 package hexlet.code.schemas;

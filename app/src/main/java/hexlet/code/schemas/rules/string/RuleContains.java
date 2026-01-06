@@ -1,12 +1,10 @@
-package hexlet.code;
+package hexlet.code.schemas.rules.string;
 
-/**
- * Правило для проверки наличия подстроки в строке.
- */
+import hexlet.code.schemas.rules.Rule;
+
+/** Правило для проверки наличия подстроки в строке. */
 public final class RuleContains implements Rule<String> {
-    /**
-     * Подстрока, которая должна присутствовать в строке.
-     */
+    /** Подстрока, которая должна присутствовать в строке. */
     private final String substring;
 
     /**

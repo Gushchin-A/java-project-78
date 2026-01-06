@@ -1,12 +1,10 @@
-package hexlet.code;
+package hexlet.code.schemas.rules.string;
 
-/**
- * Правило для проверки минимальной длины строки.
- */
+import hexlet.code.schemas.rules.Rule;
+
+/** Правило для проверки минимальной длины строки. */
 public final class RuleMinLength implements Rule<String> {
-    /**
-     * Минимальная длина строки.
-     */
+    /** Минимальная длина строки. */
     private final int minLength;
 
     /**

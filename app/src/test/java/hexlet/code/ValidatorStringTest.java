@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.schemas.StringSchema;
+import hexlet.code.schemas.rules.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import java.util.LinkedHashMap;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ValidatorTest {
+public class ValidatorStringTest {
 
     @DisplayName("Создание объектов: Validator, StringSchema")
     @Test

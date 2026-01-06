@@ -1,4 +1,6 @@
-package hexlet.code;
+package hexlet.code.schemas.rules.string;
+
+import hexlet.code.schemas.rules.Rule;
 
 /**
  * Правило с ограничением, которое не позволяет использовать
@@ -7,10 +9,7 @@ package hexlet.code;
  * не обязательны к заполнению
  */
 public final class RuleRequired implements Rule<String> {
-
-    /**
-     * Создание объекта с правилом.
-     */
+    /** Создание объекта с правилом. */
     public RuleRequired() {
     }
 

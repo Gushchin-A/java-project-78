@@ -1,4 +1,4 @@
 /**
- * Тесты для Validator.
+ * Тесты для Validator разных типов данных.
  */
 package hexlet.code;
