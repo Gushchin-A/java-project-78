@@ -65,8 +65,7 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     /**
-     * Валидация строки путем перебора LinkedHashMap
-     * с объектами-правилами.
+     * Валидация строки путем перебора LinkedHashMap.
      *
      * @param value входные данные в виде строки
      * @return если строка валидна всем правилам,

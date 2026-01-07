@@ -1,20 +1,20 @@
 package hexlet.code.schemas;
 
 import hexlet.code.schemas.rules.Rule;
-import hexlet.code.schemas.rules.number.RulePositive;
-import hexlet.code.schemas.rules.number.RuleRange;
-import hexlet.code.schemas.rules.number.RuleRequired;
+import hexlet.code.schemas.rules.map.RuleRequired;
+import hexlet.code.schemas.rules.map.RuleSizeOf;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
-/** Класс для проверки типов данных Number. */
-public final class NumberSchema extends BaseSchema<Number> {
+/** Класс для проверки объектов типа Map. */
+public final class MapSchema extends BaseSchema<Map<?, ?>> {
     /** Коллекция для добавления правил в объект схему. */
-    private final LinkedHashMap<String, Rule<Number>> rulesMap =
+    private final LinkedHashMap<String, Rule<Map<?, ?>>> rulesMap =
             new LinkedHashMap<>();
 
     /** Создание объекта схемы. */
-    public NumberSchema() {
+    public MapSchema() {
     }
 
     /**
@@ -23,34 +23,23 @@ public final class NumberSchema extends BaseSchema<Number> {
      *
      * @return возвращает текущую схему
      */
-    public NumberSchema required() {
+    public MapSchema required() {
         rulesMap.put("required", new RuleRequired());
 
         return this;
     }
 
     /**
-     * Проверка знака числа.
+     * Правило с ограничением на допустимый размер мапы.
+     * Количество пар ключ-значений в объекте Map
+     * должно быть равно заданному параметру.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
+     * @param size допустимый размер мапы
      * @return возвращает текущую схему
      */
-    public NumberSchema positive() {
-        rulesMap.put("positive", new RulePositive());
-
-        return this;
-    }
-
-    /**
-     * Проверка допустимого диапазона.
-     * Метод создает объект-правило и добавляет его в LinkedHashMap.
-     *
-     * @param left левая граница
-     * @param right правая граница
-     * @return возвращает текущую схему
-     */
-    public NumberSchema range(final int left, final int right) {
-        rulesMap.put("range", new RuleRange(left, right));
+    public MapSchema sizeof(final int size) {
+        rulesMap.put("sizeof", new RuleSizeOf(size));
 
         return this;
     }
@@ -60,19 +49,19 @@ public final class NumberSchema extends BaseSchema<Number> {
      *
      * @return возвращает LinkedHashMap
      */
-    public LinkedHashMap<String, Rule<Number>> getRulesMap() {
+    public LinkedHashMap<String, Rule<Map<?, ?>>> getRulesMap() {
         return rulesMap;
     }
 
     /**
-     * Валидация числа путем перебора LinkedHashMap.
+     * Валидация значения путем перебора LinkedHashMap.
      *
-     * @param value входные данные в виде числа
-     * @return если число валидно всем правилам,
+     * @param value входные данные в виде объекта Map
+     * @return если объект валиден всем правилам,
      * то true, иначе false
      */
     @Override
-    public boolean isValid(final Number value) {
+    public boolean isValid(final Map<?, ?> value) {
         if (value == null) {
             return !rulesMap.containsKey("required");
         }
