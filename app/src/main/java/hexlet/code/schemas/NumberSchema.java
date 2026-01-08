@@ -18,7 +18,6 @@ public final class NumberSchema extends BaseSchema<Number> {
     }
 
     /**
-     * Правило с ограничением использования null в качестве значения.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @return возвращает текущую схему
@@ -30,7 +29,6 @@ public final class NumberSchema extends BaseSchema<Number> {
     }
 
     /**
-     * Проверка знака числа.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @return возвращает текущую схему
@@ -42,7 +40,6 @@ public final class NumberSchema extends BaseSchema<Number> {
     }
 
     /**
-     * Проверка допустимого диапазона.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @param left левая граница

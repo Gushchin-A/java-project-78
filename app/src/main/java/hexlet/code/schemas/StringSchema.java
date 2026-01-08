@@ -18,7 +18,6 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     /**
-     * Правило с ограничением использования null или пустоты в значении.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @return возвращает текущую схему
@@ -30,7 +29,6 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     /**
-     * Правило минимальной длины строки.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @param length минимальная длина строки
@@ -43,7 +41,6 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     /**
-     * Правило для проверки наличия подстроки в строке.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @param target подстрока, которая должна содержаться в строке

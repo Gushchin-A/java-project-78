@@ -19,6 +19,11 @@ public final class RuleRange implements Rule<Number> {
      * @param right правая граница
      */
     public RuleRange(final int left, final int right) {
+        if (left > right) {
+            throw new IllegalArgumentException(
+                    "Range left cannot be greater right");
+        }
+
         this.leftRange = left;
         this.rightRange = right;
     }

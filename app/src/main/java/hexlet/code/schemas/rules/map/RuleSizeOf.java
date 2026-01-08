@@ -19,13 +19,18 @@ public final class RuleSizeOf implements Rule<Map<?, ?>> {
      * @param size допустимый размер мапы
      */
     public RuleSizeOf(final int size) {
+        if (size < 0) {
+            throw new IllegalArgumentException(
+                    "Size should be >= 0");
+        }
+
         this.acceptSize = size;
     }
 
     /**
      * Проверка размера мапы.
      *
-     * @param value проверяемый объект
+     * @param value проверяемый объект Map
      * @return если размер мапы равен заданному значению,
      * то true, иначе false
      */

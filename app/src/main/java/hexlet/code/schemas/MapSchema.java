@@ -2,6 +2,7 @@ package hexlet.code.schemas;
 
 import hexlet.code.schemas.rules.Rule;
 import hexlet.code.schemas.rules.map.RuleRequired;
+import hexlet.code.schemas.rules.map.RuleShape;
 import hexlet.code.schemas.rules.map.RuleSizeOf;
 
 import java.util.LinkedHashMap;
@@ -18,7 +19,6 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
     }
 
     /**
-     * Правило с ограничением использования null в качестве значения.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @return возвращает текущую схему
@@ -30,9 +30,6 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
     }
 
     /**
-     * Правило с ограничением на допустимый размер мапы.
-     * Количество пар ключ-значений в объекте Map
-     * должно быть равно заданному параметру.
      * Метод создает объект-правило и добавляет его в LinkedHashMap.
      *
      * @param size допустимый размер мапы
@@ -40,6 +37,18 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
      */
     public MapSchema sizeof(final int size) {
         rulesMap.put("sizeof", new RuleSizeOf(size));
+
+        return this;
+    }
+
+    /**
+     * Метод создает объект-правило и добавляет его в LinkedHashMap.
+     *
+     * @param schemas мапа с набором схем под каждый ключ
+     * @return возвращает текущую схему
+     */
+    public MapSchema shape(final Map<String, ? extends BaseSchema<?>> schemas) {
+        rulesMap.put("shape", new RuleShape(schemas));
 
         return this;
     }

@@ -13,6 +13,11 @@ public final class RuleMinLength implements Rule<String> {
      * @param length минимальная длина строки
      */
     public RuleMinLength(final int length) {
+        if (length < 0) {
+            throw new IllegalArgumentException(
+                    "Length should be >= 0");
+        }
+
         this.minLength = length;
     }
 
