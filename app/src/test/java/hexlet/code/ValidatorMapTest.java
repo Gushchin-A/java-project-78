@@ -2,28 +2,16 @@ package hexlet.code;
 
 import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
-import hexlet.code.schemas.rules.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ValidatorMapTest {
-
-    @DisplayName("Создание объектов: Validator, MapSchema")
-    @Test
-    void testCreateValidatorAndMapSchema() {
-        Validator v = new Validator();
-        MapSchema schema = v.map();
-
-        LinkedHashMap<String, Rule<Map<?, ?>>> map = schema.getRulesMap();
-        assertTrue(map.isEmpty());
-    }
 
     @DisplayName("Проверка правила MapSchema: required()")
     @Test

@@ -1,85 +1,61 @@
 package hexlet.code.schemas;
 
-import hexlet.code.schemas.rules.Rule;
-import hexlet.code.schemas.rules.number.RulePositive;
-import hexlet.code.schemas.rules.number.RuleRange;
-import hexlet.code.schemas.rules.number.RuleRequired;
-
-import java.util.LinkedHashMap;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 /** Класс для проверки типов данных Number. */
 public final class NumberSchema extends BaseSchema<Number> {
-    /** Коллекция для добавления правил в объект схему. */
-    private final LinkedHashMap<String, Rule<Number>> rulesMap =
-            new LinkedHashMap<>();
 
     /** Создание объекта схемы. */
     public NumberSchema() {
     }
 
     /**
-     * Метод создает объект-правило и добавляет его в LinkedHashMap.
+     * Правило с ограничением, которое не позволяет использовать
+     * null в качестве значения.
+     * Метод создает функцию-правило и добавляет ее в LinkedHashMap.
      *
      * @return возвращает текущую схему
      */
     public NumberSchema required() {
-        rulesMap.put("required", new RuleRequired());
+        Predicate<Number> requiredRule = Objects::nonNull;
+        this.addRule("required", requiredRule);
 
         return this;
     }
 
     /**
-     * Метод создает объект-правило и добавляет его в LinkedHashMap.
+     * Правило c проверкой знака в значении. Число должно быть положительным.
+     * Метод создает функцию-правило и добавляет ее в LinkedHashMap.
      *
      * @return возвращает текущую схему
      */
     public NumberSchema positive() {
-        rulesMap.put("positive", new RulePositive());
+        Predicate<Number> positiveRule = n -> n.doubleValue() > 0;
+        this.addRule("positive", positiveRule);
 
         return this;
     }
 
     /**
-     * Метод создает объект-правило и добавляет его в LinkedHashMap.
+     * Правило с допустимым диапазононом, в который должно
+     * попадать значение числа включая границы.
+     * Метод создает функцию-правило и добавляет ее в LinkedHashMap.
      *
      * @param left левая граница
      * @param right правая граница
      * @return возвращает текущую схему
      */
     public NumberSchema range(final int left, final int right) {
-        rulesMap.put("range", new RuleRange(left, right));
+        if (left > right) {
+            throw new IllegalArgumentException(
+                    "Range left cannot be greater right");
+        }
+
+        Predicate<Number> rangeRule = n -> n.doubleValue() >= left
+                && n.doubleValue() <= right;
+        this.addRule("range", rangeRule);
 
         return this;
-    }
-
-    /**
-     * Передача LinkedHashMap с набором объектов-правил.
-     *
-     * @return возвращает LinkedHashMap
-     */
-    public LinkedHashMap<String, Rule<Number>> getRulesMap() {
-        return rulesMap;
-    }
-
-    /**
-     * Валидация числа путем перебора LinkedHashMap.
-     *
-     * @param value входные данные в виде числа
-     * @return если число валидно всем правилам,
-     * то true, иначе false
-     */
-    @Override
-    public boolean isValid(final Number value) {
-        if (value == null) {
-            return !rulesMap.containsKey("required");
-        }
-
-        for (String key : rulesMap.keySet()) {
-            if (!rulesMap.get(key).check(value)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }

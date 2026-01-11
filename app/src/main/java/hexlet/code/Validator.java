@@ -3,7 +3,6 @@ package hexlet.code;
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
-import hexlet.code.schemas.StringSchemaFunc;
 
 /**
  * Валидатор данных.
@@ -40,9 +39,5 @@ public final class Validator {
      */
     public MapSchema map() {
         return new MapSchema();
-    }
-
-    public StringSchemaFunc stringFunc() {
-        return new StringSchemaFunc();
     }
 }

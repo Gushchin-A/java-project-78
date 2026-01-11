@@ -1,86 +1,59 @@
 package hexlet.code.schemas;
 
-import hexlet.code.schemas.rules.Rule;
-import hexlet.code.schemas.rules.string.RuleContains;
-import hexlet.code.schemas.rules.string.RuleMinLength;
-import hexlet.code.schemas.rules.string.RuleRequired;
-
-import java.util.LinkedHashMap;
+import java.util.function.Predicate;
 
 /** Класс для проверки типов данных String. */
 public final class StringSchema extends BaseSchema<String> {
-    /** Коллекция для добавления правил в объект схему. */
-    private final LinkedHashMap<String, Rule<String>> rulesMap =
-            new LinkedHashMap<>();
 
     /** Создание объекта схемы. */
     public StringSchema() {
     }
 
     /**
-     * Метод создает объект-правило и добавляет его в LinkedHashMap.
+     * Правило с ограничением, которое не позволяет использовать
+     * null или пустую строку в качестве значения.
+     * Без установки правила данные в строке не обязательны к заполнению.
+     * Метод создает функцию-правило и добавляет ее в LinkedHashMap.
      *
      * @return возвращает текущую схему
      */
     public StringSchema required() {
-        rulesMap.put("required", new RuleRequired());
+        Predicate<String> requiredRule = s -> !s.isEmpty();
+        this.addRule("required", requiredRule);
 
         return this;
     }
 
     /**
-     * Метод создает объект-правило и добавляет его в LinkedHashMap.
+     * Правило для проверки минимальной длины строки.
+     * Метод создает функцию-правило и добавляет ее в LinkedHashMap.
      *
-     * @param length минимальная длина строки
+     * @param minLength минимальная длина строки
      * @return возвращает текущую схему
      */
-    public StringSchema minLength(final int length) {
-        rulesMap.put("minLength", new RuleMinLength(length));
+    public StringSchema minLength(final int minLength) {
+        if (minLength < 0) {
+            throw new IllegalArgumentException(
+                    "Length should be >= 0");
+        }
+
+        Predicate<String> minLengthRule = s -> s.length() >= minLength;
+        this.addRule("minLength", minLengthRule);
 
         return this;
     }
 
     /**
-     * Метод создает объект-правило и добавляет его в LinkedHashMap.
+     * Правило для проверки наличия подстроки в строке.
+     * Метод создает функцию-правило и добавляет ее в LinkedHashMap.
      *
      * @param target подстрока, которая должна содержаться в строке
      * @return возвращает текущую схему
      */
     public StringSchema contains(final String target) {
-        rulesMap.put("contains", new RuleContains(target));
+        Predicate<String> containsRule = s -> s.contains(target);
+        this.addRule("contains", containsRule);
 
         return this;
-    }
-
-    /**
-     * Передача LinkedHashMap с набором объектов-правил.
-     *
-     * @return возвращает LinkedHashMap
-     */
-    public LinkedHashMap<String, Rule<String>> getRulesMap() {
-        return rulesMap;
-    }
-
-    /**
-     * Валидация строки путем перебора LinkedHashMap.
-     *
-     * @param value входные данные в виде строки
-     * @return если строка валидна всем правилам,
-     * то true, иначе false
-     */
-    @Override
-    public boolean isValid(final String value) {
-        boolean empty = value == null || value.isEmpty();
-        if (!rulesMap.containsKey("required") && empty) {
-            return true;
-        }
-
-        for (String key : rulesMap.keySet()) {
-            if (!rulesMap.get(key).check(value)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }

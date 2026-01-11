@@ -1,11 +1,8 @@
 package hexlet.code;
 
 import hexlet.code.schemas.NumberSchema;
-import hexlet.code.schemas.rules.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,16 +30,6 @@ public class ValidatorNumberTest {
     private static final int NUM_1 = 1;
     /** Тестовое число. */
     private static final int NUM_NEG_2 = -2;
-
-    @DisplayName("Создание объектов: Validator, NumberSchema")
-    @Test
-    void testCreateValidatorAndNumberSchema() {
-        Validator v = new Validator();
-        NumberSchema schema = v.number();
-
-        LinkedHashMap<String, Rule<Number>> map = schema.getRulesMap();
-        assertTrue(map.isEmpty());
-    }
 
     @DisplayName("Проверка правила NumberSchema: required()")
     @Test
